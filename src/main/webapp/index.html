@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Product Matrix</title>
+<link rel="stylesheet" type="text/css"
+	href="static/themes/default/easyui.css">
+<script type="text/javascript" src="static/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',border:false"
+		style="height: 60px; background: #B3DFDA; padding: 10px">
+		<font size="6px"><b><i>Product Matrix</i></b></font>
+	</div>
+	<div data-options="region:'west',split:false,title:''"
+		style="width: 210px; padding: 3px;">
+		<!-- Left content -->
+		<div class="easyui-panel" title="Dashboard" collapsible="true"
+			style="width: 200px; height: auto; padding: 0px;">
+			View as a slide show<br /> Order prints online<br /> Print pictures
+		</div>
+		<div class="easyui-panel" title="Products" collapsible="true"
+			style="width: 200px; height: auto; padding: 0px;">
+			<!-- Create Products tree -->
+			<ul id="tt" class="easyui-tree" url="tree2_getdata.php">
+			</ul>
+			<!--  End product tree -->
+		</div>
+		<div class="easyui-panel" title="Systems" collapsible="true"
+			collapsed="true" style="width: 200px; height: auto; padding: 10px;">
+			New York<br /> My Pictures<br /> My Computer<br /> My Network
+			Places
+		</div>
+		<!-- end of left content -->
+	</div>
+	<!--  Copy right info @ bottom area -->
+	<div data-options="region:'south',border:false"
+		style="height: 20px; background: #A9FACD; padding: 2px;">
+		<center>@Copyright Product matrix org since 2013</center>
+	</div>
+	<div data-options="region:'center',title:''"></div>
+</body>
+</html>

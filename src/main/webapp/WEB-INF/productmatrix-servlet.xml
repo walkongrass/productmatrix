@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <!-- the application context definition for the springapp DispatcherServlet -->
+	<!-- the application context definition for the springapp DispatcherServlet -->
 
-    <bean name="/hello.htm" class="springapp.web.HelloController"/>
+	<bean name="/hello.htm" class="springapp.web.HelloController" />
+	<bean name="/product.json"
+		class="org.productmatrix.web.controller.product.ProductConroller"></bean>
 
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
-        <property name="prefix" value=""></property>
-        <property name="suffix" value=".jsp"></property>        
-    </bean>
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="contentNegotiationManager">
+			<bean
+				class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+				<property name="mediaTypes">
+					<map>
+						<entry key="html" value="text/html" />
+						<entry key="json" value="application/json" />
+					</map>
+				</property>
+			</bean>
+		</property>
+
+		<property name="viewResolvers">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/" />
+					<property name="suffix" value=".htm" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+			</list>
+		</property>
+	</bean>
 </beans>
