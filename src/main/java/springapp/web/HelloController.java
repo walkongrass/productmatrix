@@ -19,6 +19,7 @@ public class HelloController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+    	
         logger.info("Returning hello view");
 
         String now = (new Date()).toString();

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.productmatrix.web.controller.common.exception;
+package org.productmatrix.web.common.exception;
 
 /**
  * @author lizhu.zhanglz

@@ -18,7 +18,7 @@
     
     <servlet-mapping>
         <servlet-name>productmatrix</servlet-name>
-        <url-pattern>*.json</url-pattern>
+        <url-pattern>/product/*</url-pattern>
     </servlet-mapping>
     
 
