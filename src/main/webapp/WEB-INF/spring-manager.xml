@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<import resource="spring-ibatis.xml"/>
+	
+	<bean id="productManager" class="org.productmatrix.biz.product.impl.ProductManagerImpl">
+		<property name="productDAO" ref="productDAO"></property>
+	</bean>
+</beans>

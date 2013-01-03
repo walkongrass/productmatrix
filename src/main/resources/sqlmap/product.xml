@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+ 
+<sqlMap namespace="PRODUCT">
+    <resultMap class = "org.productmatrix.model.Product" id = "result">
+        <result property = "productId" column = "product_id"/>
+        <result property = "productName" column = "product_name"/>
+        <result property = "productDes" column = "product_des"/>
+        <result property = "gmtCreated" column = "gmt_created"/>
+        <result property = "gmtModified" column = "gmt_modified"/>
+    </resultMap>
+ 
+    <select id = "listProducts" resultMap = "result">
+        select product_id,product_name,product_des,gmt_created,gmt_modified from product order by product_name asc;
+    </select>
+ 
+</sqlMap>
