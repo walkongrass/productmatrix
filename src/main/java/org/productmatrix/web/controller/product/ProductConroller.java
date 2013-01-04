@@ -3,6 +3,8 @@
  */
 package org.productmatrix.web.controller.product;
 
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +37,11 @@ public class ProductConroller extends CommonRouterController{
 				}
 			}
 			builder.append("]");
-			response.getOutputStream().write(builder.toString().getBytes());
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = new PrintWriter(new OutputStreamWriter(response.getOutputStream(),"UTF8"),true);
+			writer.write(builder.toString());
+			writer.flush();
 		}
 		else {
 			Product p = new Product();
