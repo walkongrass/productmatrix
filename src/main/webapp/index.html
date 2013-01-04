@@ -80,8 +80,15 @@
 			style="padding: 5px; background: #fafafa; width: 1056px; border: 1px solid #ccc">
 			<a href="#" class="easyui-linkbutton" onclick="addProduct();">Add
 				Product</a>
-			<text id='producttext'>asdf</text>
 		</div>
+		<div class="easyui-tabs" style="width:1065px;height:100px;">  
+    <div title="版本列表" style="padding:3px;">  
+        First Tab  
+    </div>  
+    <div title="产品矩阵" closable="false" style="padding:3px;">  
+        Second Tab  
+    </div>  
+</div>  
 	</div>
 
 	<div id="dd" class="easyui-dialog"
@@ -95,7 +102,7 @@
 				</tr>
 				<tr>
 					<td>Product Description:</td>
-					<td><input name="pDesc" type="text"></input></td>
+					<td><input name="pDesc" type="textarea"></input></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Submit"></input></td>
