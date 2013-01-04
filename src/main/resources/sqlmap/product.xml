@@ -14,5 +14,9 @@
     <select id = "listProducts" resultMap = "result">
         select product_id,product_name,product_des,gmt_created,gmt_modified from product order by product_name asc;
     </select>
+    
+    <insert id="addProduct" parameterClass="org.productmatrix.model.Product">
+    	insert into product (product_name,product_des,gmt_created) values (#productName#,#productDes#,now())
+    </insert>
  
 </sqlMap>

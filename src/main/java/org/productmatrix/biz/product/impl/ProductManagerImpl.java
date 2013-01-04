@@ -9,6 +9,7 @@ import org.productmatrix.biz.product.ProductManager;
 import org.productmatrix.dao.ProductDAO;
 import org.productmatrix.model.Product;
 import org.productmatrix.util.Result;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author lizhu.zhanglz
@@ -24,9 +25,19 @@ public class ProductManagerImpl implements ProductManager {
 	 * @see org.productmatrix.biz.product.ProductManager#addProduct(org.productmatrix.model.Product)
 	 */
 	@Override
-	public Result<Product> addProduct(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public Result addProduct(Product product) {
+		Result<Product> result = new Result<Product>();
+		try{
+			productDAO.addProduct(product);
+			result.setSucceed(true);
+		}catch(Exception e) {
+			e.printStackTrace();
+			result.setSucceed(false);
+			result.setErrorMessage(e.getMessage());
+		}
+		return result;
+		
 	}
 
 	/* (non-Javadoc)

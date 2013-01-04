@@ -14,7 +14,7 @@ import org.productmatrix.util.Result;
  */
 public interface ProductManager {
 	
-	public Result<Product> addProduct(Product product);
+	public Result addProduct(Product product);
 	
 	public Result<Product> getProductById(Long id);
 	

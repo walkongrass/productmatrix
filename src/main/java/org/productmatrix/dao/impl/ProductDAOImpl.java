@@ -25,4 +25,10 @@ public class ProductDAOImpl extends SqlMapClientDaoSupport implements ProductDAO
 		return (List<Product>)template.queryForList("listProducts");
 	}
 
+	@Override
+	public void addProduct(Product product) {
+		SqlMapClientTemplate template = getSqlMapClientTemplate();
+		template.insert("addProduct", product);
+	}
+
 }

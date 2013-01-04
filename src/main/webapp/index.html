@@ -14,8 +14,31 @@
 				alert('you click ' + node.text);
 			}
 		});
+		
+		$('#dd').dialog('close');
+		
+
+		$('#addProductForm').form({  
+		    success:function(data){
+		    	var jsonobj = eval('('+data+')');
+		    	
+		    	$.messager.alert('Info', jsonobj.isSuccess, 'info');  
+		    	if(data.isSuccess == 'true'){
+		    		$.messager.alert('Info', '添加产品成功', 'info');  
+		    	}
+		    	else {
+		    		$.messager.alert('Info', '添加产品失败', 'info');  
+		    	}
+		    	$('#dd').dialog('close');
+		    }  
+		});  
 
 	});
+
+	function addProduct() {
+		$('#dd').dialog('open');
+	}
+	
 </script>
 </head>
 <body class="easyui-layout">
@@ -50,6 +73,34 @@
 		style="height: 20px; background: #A9FACD; padding: 2px;">
 		<center>@Copyright Product matrix org since 2013</center>
 	</div>
-	<div data-options="region:'center',title:''"></div>
+	<div data-options="region:'center',title:''">
+		<div
+			style="padding: 5px; background: #fafafa; width: 1056px; border: 1px solid #ccc">
+			<a href="#" class="easyui-linkbutton" onclick="addProduct();">Add
+				Product</a>
+			<text id='producttext'>asdf</text>
+		</div>
+	</div>
+
+	<div id="dd" class="easyui-dialog"
+		style="padding: 5px; width: 400px; height: 200px;" title="Add Product"
+		iconCls="icon-ok">
+		<form id="addProductForm" action="product/product.json?action=addProduct" method="post">
+			<table>
+				<tr>
+					<td>Product Name:</td>
+					<td><input name="pName" type="text"></input></td>
+				</tr>
+				<tr>
+					<td>Product Description:</td>
+					<td><input name="pDesc" type="text"></input></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Submit"></input></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
 </body>
 </html>

@@ -13,4 +13,7 @@ import org.productmatrix.model.Product;
  */
 public interface ProductDAO {
 	public List<Product> listProducts();
+	
+	public void addProduct(Product product);
+	
 }

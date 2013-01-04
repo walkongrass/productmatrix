@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.productmatrix.biz.product.ProductManager;
 import org.productmatrix.model.Product;
 import org.productmatrix.util.Result;
+import org.productmatrix.util.StringUtil;
 import org.productmatrix.web.common.CommonRouterController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,12 +44,6 @@ public class ProductConroller extends CommonRouterController{
 			writer.write(builder.toString());
 			writer.flush();
 		}
-		else {
-			Product p = new Product();
-			p.setProductName("p_name");
-			p.setProductId(1L);
-			response.getOutputStream().write(assambleProductTreeJson(p).getBytes());
-		}
 		
 		return null;
 		
@@ -62,6 +57,26 @@ public class ProductConroller extends CommonRouterController{
 		builder.append("}");
 		return builder.toString();
 
+	}
+	
+	
+	public ModelAndView addProduct(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String productName = request.getParameter("pName");
+		String productDesc = request.getParameter("pDesc");
+		
+		if(StringUtil.isBlank(productDesc) || StringUtil.isBlank(productName)){
+			// TODO: return the right content.
+			response.getOutputStream().write("{\"isSuccess\":\"false\"}".getBytes());
+			return null;
+		}
+		else {
+			Product product = new Product();
+			product.setProductName(productName);
+			product.setProductDes(productDesc);
+			productManager.addProduct(product);
+			response.getOutputStream().write("{\"isSuccess\":\"true\"}".getBytes());
+			return null;
+		}
 	}
 
 	public void setProductManager(ProductManager productManager) {
