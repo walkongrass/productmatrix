@@ -22,14 +22,16 @@
 		    success:function(data){
 		    	var jsonobj = eval('('+data+')');
 		    	
-		    	$.messager.alert('Info', jsonobj.isSuccess, 'info');  
-		    	if(data.isSuccess == 'true'){
-		    		$.messager.alert('Info', '添加产品成功', 'info');  
+		    	
+		    	if(jsonobj.isSuccess){
+		    		$.messager.alert('Info', '添加产品成功', 'info'); 
+		    		$('#ptree').tree('reload');
 		    	}
 		    	else {
 		    		$.messager.alert('Info', '添加产品失败', 'info');  
 		    	}
 		    	$('#dd').dialog('close');
+		    	
 		    }  
 		});  
 
