@@ -5,4 +5,5 @@ PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
 
 <sqlMapConfig>
 	<sqlMap resource="/sqlmap/product.xml" />
+	<sqlMap resource="/sqlmap/productversion.xml" />
 </sqlMapConfig>

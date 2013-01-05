@@ -8,6 +8,7 @@ package org.productmatrix.model;
  *
  */
 public class SystemVersion extends BasicModel {
+	
 	private Long systemVerId;
 	
 	private Long systemId;

@@ -7,4 +7,8 @@
 	<bean id="productManager" class="org.productmatrix.biz.product.impl.ProductManagerImpl">
 		<property name="productDAO" ref="productDAO"></property>
 	</bean>
+	
+	<bean id="productVersionManager" class="org.productmatrix.biz.product.impl.ProductVersionManagerImpl">
+		<property name="productVersionDAO" ref="productVersionDAO"></property>
+	</bean>
 </beans>

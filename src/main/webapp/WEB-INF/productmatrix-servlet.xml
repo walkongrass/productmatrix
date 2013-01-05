@@ -18,6 +18,10 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<bean name="/product.json" class="org.productmatrix.web.controller.product.ProductConroller">
 		<property name="productManager" ref="productManager"></property>
 	</bean>
+	
+	<bean name="/productVersion.json" class="org.productmatrix.web.controller.product.ProductVersionController">
+		<property name="productVersionManager" ref="productVersionManager"></property>
+	</bean>
 
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">

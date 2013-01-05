@@ -15,8 +15,9 @@
 			}
 		});
 		
-		$('#dd').dialog('close');
+		$('#addProductDialog').dialog('close');
 		
+		document.getElementById('productVersion').style.style.visibility=="hidden";
 
 		$('#addProductForm').form({  
 		    success:function(data){
@@ -30,15 +31,16 @@
 		    	else {
 		    		$.messager.alert('Info', '添加产品失败', 'info');  
 		    	}
-		    	$('#dd').dialog('close');
+		    	$('#addProductDialog').dialog('close');
 		    	
 		    }  
 		});  
 
 	});
-
+	
+	<!--添加产品的界�?->
 	function addProduct() {
-		$('#dd').dialog('open');
+		$('#addProductDialog').dialog('open');
 	}
 	
 </script>
@@ -81,20 +83,42 @@
 			<a href="#" class="easyui-linkbutton" onclick="addProduct();">Add
 				Product</a>
 		</div>
-		<div class="easyui-tabs" style="width:1065px;height:100px;">  
-    <div title="版本列表" style="padding:3px;">  
-        First Tab  
-    </div>  
-    <div title="产品矩阵" closable="false" style="padding:3px;">  
-        Second Tab  
-    </div>  
-</div>  
-	</div>
+		<div class="easyui-tabs" style="width: 1065px; height: 800px;">
+			<div title="版本列表" style="padding: 3px;">
+				<!-- product version table -->
+				<div id="productVersion">
+					<table id="tt" class="easyui-datagrid"
+						style="width: 600px; height: 250px"
+						url=""
+						title="Product versions" iconCls="icon-save" toolbar="#tb"
+						rownumbers="true" pagination="true">
+						<thead>
+							<tr>
+								<th field="versionid" width="80">Version ID</th>
+								<th field="versionnum" width="80" align="right">Version Num</th>
+								<th field="gmtcreated" width="80" align="right">Create Time</th>
+								<th field="desc" width="80">Description</th>
+							</tr>
+						</thead>
+					</table>
+					<div id="tb">
+						<a href="#" class="easyui-linkbutton" iconCls="icon-add"
+							plain="true" onclick="javascript:alert('Add')">Add</a>
+					</div>
+				</div>
+				<!-- end product version table -->
 
-	<div id="dd" class="easyui-dialog"
+			</div>
+			<div title="产品矩阵" closable="false" style="padding: 3px;">
+				Second Tab</div>
+		</div>
+	</div>
+	<!-- Add product dialog -->
+	<div id="addProductDialog" class="easyui-dialog"
 		style="padding: 5px; width: 400px; height: 200px;" title="Add Product"
 		iconCls="icon-ok">
-		<form id="addProductForm" action="product/product.json?action=addProduct" method="post">
+		<form id="addProductForm"
+			action="product/product.json?action=addProduct" method="post">
 			<table>
 				<tr>
 					<td>Product Name:</td>
@@ -110,6 +134,7 @@
 			</table>
 		</form>
 	</div>
+	<!--  end add product dialog -->
 
 </body>
 </html>
