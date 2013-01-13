@@ -11,7 +11,15 @@
 	$(function() {
 		$('#ptree').tree({
 			onClick : function(node) {
-				alert('you click ' + node.text);
+				$('#tt').datagrid({  
+				    url:"product/productVersion.json?action=getProductVersions&productId="+node.id+"&currentPage=1&pageSize=10",  
+				    columns:[[  
+				        {field:'versionid',title:'Version ID',width:100},  
+				        {field:'versionnum',title:'Version Num',width:100},  
+				        {field:'gmtcreated',title:'Create Time',width:100,align:'right'},
+				        {field:'desc',title:'Description',width:100,align:'right'}
+				    ]]  
+				});  
 			}
 		});
 		
@@ -88,8 +96,8 @@
 				<!-- product version table -->
 				<div id="productVersion">
 					<table id="tt" class="easyui-datagrid"
-						style="width: 600px; height: 250px"
-						url=""
+						style="width: 1000px; height: 250px"
+						url="product/productVersion.json?action=getProductVersions&productId=32"
 						title="Product versions" iconCls="icon-save" toolbar="#tb"
 						rownumbers="true" pagination="true">
 						<thead>
@@ -97,7 +105,7 @@
 								<th field="versionid" width="80">Version ID</th>
 								<th field="versionnum" width="80" align="right">Version Num</th>
 								<th field="gmtcreated" width="80" align="right">Create Time</th>
-								<th field="desc" width="80">Description</th>
+								<th field="desc" width="280">Description</th>
 							</tr>
 						</thead>
 					</table>
@@ -137,4 +145,3 @@
 	<!--  end add product dialog -->
 
 </body>
-</html>
