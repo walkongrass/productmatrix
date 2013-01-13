@@ -9,6 +9,7 @@ import org.productmatrix.biz.product.ProductVersionManager;
 import org.productmatrix.dao.ProductVersionDAO;
 import org.productmatrix.model.ProductVersion;
 import org.productmatrix.util.Paginer;
+import org.productmatrix.util.Result;
 
 /**
  * @author lizhu.zhanglz
@@ -45,6 +46,14 @@ public class ProductVersionManagerImpl implements ProductVersionManager {
 
 	public void setProductVersionDAO(ProductVersionDAO productVersionDAO) {
 		this.productVersionDAO = productVersionDAO;
+	}
+
+	@Override
+	public Result addProductVersion(ProductVersion pv) {
+		if(pv != null ) {
+			productVersionDAO.createProductVersion(pv);
+		}
+		return null;
 	}
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.productmatrix.dao.ProductVersionDAO;
 import org.productmatrix.model.ProductVersion;
+import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 /**
@@ -36,6 +37,12 @@ public class ProductVersionDAOImpl extends SqlMapClientDaoSupport implements Pro
 		params.put("pageSize", pageSize);
 		params.put("offset", offset);
 		return (List<ProductVersion>)getSqlMapClientTemplate().queryForList("getProductVersions", params);
+	}
+
+	@Override
+	public void createProductVersion(ProductVersion pv) {
+		SqlMapClientTemplate template = getSqlMapClientTemplate();
+		template.insert("addProductVersion", pv);
 	}
 
 }

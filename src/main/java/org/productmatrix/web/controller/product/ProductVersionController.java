@@ -14,6 +14,7 @@ import org.productmatrix.biz.product.ProductVersionManager;
 import org.productmatrix.model.ProductVersion;
 import org.productmatrix.util.DateUtil;
 import org.productmatrix.util.Paginer;
+import org.productmatrix.util.StringUtil;
 import org.productmatrix.web.common.CommonRouterController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,5 +67,29 @@ public class ProductVersionController extends CommonRouterController {
 
 	public void setProductVersionManager(ProductVersionManager productVersionManager) {
 		this.productVersionManager = productVersionManager;
+	}
+	
+	public ModelAndView addProductVersion(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		String pvpid=request.getParameter("pvpid");
+		String verNum = request.getParameter("pvNum");
+		String verDesc= request.getParameter("pvDesc");
+		if(StringUtil.isBlank(pvpid) || StringUtil.isBlank(verNum)) {
+			JSONObject obj = new JSONObject();
+			obj.put("isSuccess", "false");
+			response.getOutputStream().write(obj.toString().getBytes());
+			return null;
+		}
+		
+		ProductVersion pv = new ProductVersion();
+		pv.setProductId(Long.valueOf(pvpid));
+		pv.setVersionNum(verNum);
+		pv.setVersionDes(verDesc);
+		productVersionManager.addProductVersion(pv);
+		
+		JSONObject obj = new JSONObject();
+		obj.put("isSuccess", "true");
+		response.getOutputStream().write(obj.toString().getBytes());
+		return null;
+		
 	}
 }

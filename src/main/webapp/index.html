@@ -19,13 +19,16 @@
 				        {field:'gmtcreated',title:'Create Time',width:'100'},
 				        {field:'desc',title:'Description',width:600}
 				    ]]  
-				});  
+				}); 
+				
+				$('#pvpid').val(node.id);
 			}
 		});
 		
 		$('#addProductDialog').dialog('close');
+		$('#addProductVersionDialog').dialog('close');
 		
-		document.getElementById('productVersion').style.style.visibility=="hidden";
+		document.getElementById('productVersion').style.visibility=="hidden";
 
 		$('#addProductForm').form({  
 		    success:function(data){
@@ -43,12 +46,43 @@
 		    	
 		    }  
 		});  
+		
+		$('#addProductVersionForm').form({  
+		    success:function(data){
+		    	var jsonobj = eval('('+data+')');
+		    	
+		    	
+		    	if(jsonobj.isSuccess){
+		    		$.messager.alert('Info', '添加产品版本成功', 'info'); 
+		    		$('#tt').datagrid({  
+					    url:"product/productVersion.json?action=getProductVersions&productId="+$('#pvpid').val()+"&currentPage=1&pageSize=10",  
+					    columns:[[  
+					        {field:'versionid',title:'Version ID',width:'100'},  
+					        {field:'versionnum',title:'Version Num',width:'100'},  
+					        {field:'gmtcreated',title:'Create Time',width:'100'},
+					        {field:'desc',title:'Description',width:600}
+					    ]]  
+					}); 
+		    	}
+		    	else {
+		    		$.messager.alert('Info', '添加产品版本失败', 'info');  
+		    	}
+		    	$('#addProductVersionDialog').dialog('close');
+		    	
+		    }  
+		});  
 
 	});
 	
 	<!--添加产品的界�?->
 	function addProduct() {
 		$('#addProductDialog').dialog('open');
+	}
+	
+	<!-- 添加产品版本 -->
+	
+	function addProductVersion() {
+		$('#addProductVersionDialog').dialog('open');
 	}
 	
 </script>
@@ -97,7 +131,7 @@
 				<!-- product version table -->
 				<div id="productVersion">
 					<table id="tt" class="easyui-datagrid"
-						style="width: 1000px; height: 600px"
+						style="width: 1000px; height: auto"
 						url=""
 						title="Product versions" iconCls="icon-save" toolbar="#tb"
 						rownumbers="false" pagination="true">
@@ -111,8 +145,7 @@
 						</thead>
 					</table>
 					<div id="tb">
-						<a href="#" class="easyui-linkbutton" iconCls="icon-add"
-							plain="true" onclick="javascript:alert('Add')">Add</a>
+						<a href="#" class="easyui-linkbutton"	plain="true" onclick="addProductVersion();">Add</a>
 					</div>
 				</div>
 				<!-- end product version table -->
@@ -139,6 +172,30 @@
 				</tr>
 				<tr>
 					<td><input type="submit" value="Submit"></input></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!--  end add product dialog -->
+	
+	<!-- Add product version dialog -->
+	<div id="addProductVersionDialog" class="easyui-dialog"
+		style="padding: 5px; width: auto; height: auto;" title="Add Product Version"
+		iconCls="icon-ok">
+		<form id="addProductVersionForm"
+			action="product/productVersion.json?action=addProductVersion" method="post">
+			<input type="hidden" name="pvpid" id="pvpid" value=""> </input>
+			<table>
+				<tr>
+					<td>Version num:</td>
+					<td><input name="pvNum" type="text"></input></td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td><textarea name="pvDesc" rows="10" cols="30"></textarea></td>
+				</tr>
+				<tr>
+					<td align="center"><input type="submit" value="Submit" ></input></td>
 				</tr>
 			</table>
 		</form>

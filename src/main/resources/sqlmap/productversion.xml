@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
 "http://www.ibatis.com/dtd/sql-map-2.dtd">
- 
+
 <sqlMap namespace="PRODUCTVERSION">
-    <resultMap class = "org.productmatrix.model.ProductVersion" id = "result">
-        <result property = "productId" column = "product_id"/>
-        <result property = "versionId" column = "version_id"/>
-        <result property = "versionDes" column = "version_des"/>
-        <result property = "versionNum" column = "version_num"/>
-        <result property = "gmtCreated" column = "gmt_created"/>
-        <result property = "gmtModified" column = "gmt_modified"/>
-    </resultMap>
- 
-    <select id = "countProductVersion" resultClass="Integer" parameterClass="Long">
-        select count(*) from product_version where product_id= #productId#;
-    </select>
-    
-    <select id="getProductVersions" parameterClass="java.util.HashMap" resultMap="result">
-    	select  version_id,product_id,version_des,version_num,gmt_created,gmt_modified from product_version where product_id=#productId# order by version_id desc limit #pageSize# offset #offset#
-    </select>
-    
- 
+	<resultMap class="org.productmatrix.model.ProductVersion" id="result">
+		<result property="productId" column="product_id" />
+		<result property="versionId" column="version_id" />
+		<result property="versionDes" column="version_des" />
+		<result property="versionNum" column="version_num" />
+		<result property="gmtCreated" column="gmt_created" />
+		<result property="gmtModified" column="gmt_modified" />
+	</resultMap>
+
+	<select id="countProductVersion" resultClass="Integer"
+		parameterClass="Long">
+		select count(*) from product_version where product_id= #productId#;
+	</select>
+
+	<select id="getProductVersions" parameterClass="java.util.HashMap"
+		resultMap="result">
+		select
+		version_id,product_id,version_des,version_num,gmt_created,gmt_modified
+		from product_version where product_id=#productId# order by version_id
+		desc limit #pageSize# offset #offset#
+	</select>
+
+	<insert id="addProductVersion" parameterClass="org.productmatrix.model.ProductVersion">
+		insert into product_version
+		(product_id,version_id,version_des,version_num,gmt_created) values
+		(#productId#,#versionId#,#versionDes#,#versionNum#,now())
+	</insert>
+
+
 </sqlMap>

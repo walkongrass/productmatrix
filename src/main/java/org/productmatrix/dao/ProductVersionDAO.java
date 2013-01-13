@@ -16,5 +16,7 @@ public interface ProductVersionDAO {
 	int countProductVersion(Long productId);
 	
 	List<ProductVersion> getProductVersions(Long productId,int pageSize,int offset);
+
+	void createProductVersion(ProductVersion pv);
 	
 }
